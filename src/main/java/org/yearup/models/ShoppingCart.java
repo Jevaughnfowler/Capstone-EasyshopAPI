@@ -25,7 +25,16 @@ public class ShoppingCart
 
     public void add(ShoppingCartItem item)
     {
-        items.put(item.getProductId(), item);
+        int productId = item.getProduct().getProductId();
+
+        if (items.containsKey(productId)) {
+            // If product already in cart, accumulate quantity
+            ShoppingCartItem existingItem = items.get(productId);
+            int newQuantity = existingItem.getQuantity() + item.getQuantity();
+            existingItem.setQuantity(newQuantity);
+        } else {
+            items.put(productId, item);
+        }
     }
 
     public ShoppingCartItem get(int productId)
@@ -33,14 +42,12 @@ public class ShoppingCart
         return items.get(productId);
     }
 
-    public BigDecimal getTotal()
+    public BigDecimal getTotal(double total)
     {
-        BigDecimal total = items.values()
-                                .stream()
-                                .map(i -> i.getLineTotal())
-                                .reduce( BigDecimal.ZERO, (lineTotal, subTotal) -> subTotal.add(lineTotal));
-
-        return total;
+        BigDecimal lineTotal = null;
+        return items.values()
+                .stream()
+                .map(shoppingCartItem -> shoppingCartItem.getLineTotal(lineTotal))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
-
 }

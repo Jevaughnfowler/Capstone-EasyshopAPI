@@ -40,7 +40,8 @@ public class ShoppingCartController {
     @GetMapping
     public ShoppingCart getCart(Principal principal) {
         try {
-            int userId = getUserId(principal);
+            String username = principal.getName();
+            int userId = userDao.getIdByUsername(username);
             return shoppingCartDao.getByUserId(userId);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to retrieve shopping cart.", e);
@@ -50,10 +51,12 @@ public class ShoppingCartController {
     // POST method to add a product to the cart - the url should be
     // https://localhost:8080/cart/products/15 (15 is the productId to be added)
     @PostMapping("/products/{productId}")
-    public void addToCart(@PathVariable int productId, Principal principal) {
+    public ShoppingCart addToCart(@PathVariable int productId, Principal principal) {
         try {
-            int userId = getUserId(principal);
-            shoppingCartDao.addProduct(userId, productId);
+            String username = principal.getName();
+            int userId = userDao.getIdByUsername(username);
+            shoppingCartDao.addProduct(userId,productId);
+            return shoppingCartDao.getByUserId(userId);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to add product to cart.", e);
         }
@@ -83,10 +86,11 @@ public class ShoppingCartController {
     // DELETE method to clear all products from the current user's cart
     // https://localhost:8080/cart
     @DeleteMapping
-    public void clearCart(Principal principal) {
+    public ShoppingCart clearCart(Principal principal) {
         try {
-            int userId = getUserId(principal);
-            shoppingCartDao.clearCart(userId);
+            String username = principal.getName();
+            int userId = userDao.getIdByUsername(username);
+            return shoppingCartDao.clearCart(userId);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to clear cart.", e);
         }
