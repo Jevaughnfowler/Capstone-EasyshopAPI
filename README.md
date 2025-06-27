@@ -5,19 +5,26 @@ This project powers all the backend logic for a pre-built front-end shopping sit
 
 ---
 
-## 💡 About This Project
+💡 About This Project
+This project was built as my final capstone for the Year Up United Code Academy. Starting from a provided front-end, I was responsible for developing a full-featured e-commerce backend API using Java, Spring Boot, and MySQL.
 
-This project started as part of my final capstone for the Year Up United Code Academy. We were provided with a front-end and tasked with building out the full backend API to support real-world e-commerce features.
+🔧 Key Features I Designed and Built:
+✅ A complete shopping cart system with quantity updates, cart persistence, and real-time calculations.
 
-Along the way, I:
+🛒 Order placement and order history, allowing users to securely checkout their cart items and view past purchases.
 
-- Faced and solved **security challenges** around user roles and protected endpoints.
-- Learned how to structure **modular, testable DAOs** with JDBC and Spring.
-- Built a fully functional **cart and order system** from scratch.
-- Created CRUD APIs with **admin-level access controls**.
-- Integrated **user profile management** that syncs with authenticated sessions.
+🔐 Role-based security using Spring Security, protecting endpoints for regular users and administrators.
 
-This wasn’t just about getting it to work — it was about understanding how each layer of a modern Java app connects.
+📦 Full CRUD operations for categories, products, and user profiles — with admin-only access for management actions.
+
+🧱 Clean and modular DAO architecture using JDBC and Spring’s @Component, with a clear separation of concerns.
+
+👤 Authenticated user profile management synced to session-based roles and access.
+
+🔍 API tested and validated using Postman, ensuring all features work independently of the front-end.
+
+🧠 What I Learned:
+This wasn’t just about building endpoints — it was about deeply understanding how each layer of a full-stack Java application connects, from database schema to secured REST endpoints. Using Postman helped me test and debug APIs in isolation, reinforcing my backend development skills
 
 ---
 
