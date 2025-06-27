@@ -1,5 +1,7 @@
-package org.yearup.data;
+package org.yearup.data.mysql;
 
+import org.yearup.data.ProductDao;
+import org.yearup.data.ShoppingCartDao;
 import org.yearup.models.Product;
 import org.yearup.models.ShoppingCart;
 import org.yearup.models.ShoppingCartItem;

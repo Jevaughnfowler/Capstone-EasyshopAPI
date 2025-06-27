@@ -45,7 +45,7 @@ public class OrderController
             Order order = new Order();
             order.setUserId(userId);
             order.setOrderDate(LocalDateTime.now());
-            order.setTotal(cart.getTotal(userId));
+            order.setTotal(cart.getTotal());
 
             // Save the order and get generated ID
             Order savedOrder = orderDao.createOrder(order);

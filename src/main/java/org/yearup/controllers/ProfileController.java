@@ -35,7 +35,7 @@ public class ProfileController
     }
 
     @PutMapping
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)  
     public void updateProfile(@RequestBody Profile profile)
     {
         String username = SecurityUtils.getCurrentUsername().orElseThrow();
@@ -43,4 +43,14 @@ public class ProfileController
         profile.setUserId(user.getId());
         profileDao.update(profile);
     }
+
+    @DeleteMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteProfile()
+    {
+        String username = SecurityUtils.getCurrentUsername().orElseThrow();
+        User user = userDao.getByUserName(username);
+        profileDao.delete(user.getId());
+    }
+
 }

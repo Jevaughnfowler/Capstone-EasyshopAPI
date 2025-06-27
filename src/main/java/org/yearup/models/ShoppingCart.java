@@ -27,12 +27,15 @@ public class ShoppingCart
     {
         int productId = item.getProduct().getProductId();
 
-        if (items.containsKey(productId)) {
+        if (items.containsKey(productId))
+        {
             // If product already in cart, accumulate quantity
             ShoppingCartItem existingItem = items.get(productId);
             int newQuantity = existingItem.getQuantity() + item.getQuantity();
             existingItem.setQuantity(newQuantity);
-        } else {
+        }
+        else
+        {
             items.put(productId, item);
         }
     }
@@ -42,12 +45,12 @@ public class ShoppingCart
         return items.get(productId);
     }
 
-    public BigDecimal getTotal(double total)
-    {
-        BigDecimal lineTotal = null;
+    public BigDecimal getTotal() {
         return items.values()
                 .stream()
-                .map(shoppingCartItem -> shoppingCartItem.getLineTotal(lineTotal))
+                .map(ShoppingCartItem::getLineTotal)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+
+
 }

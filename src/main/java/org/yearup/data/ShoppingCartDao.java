@@ -10,5 +10,4 @@ public interface ShoppingCartDao {
     void updateQuantity(int userId, int productId, int quantity);
 
     ShoppingCart clearCart(int userId);
-
 }

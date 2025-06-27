@@ -46,7 +46,7 @@ public class ShoppingCartItem
         return this.product.getProductId();
     }
 
-    public BigDecimal getLineTotal(BigDecimal lineTotal)
+    public BigDecimal getLineTotal()
     {
         BigDecimal basePrice = product.getPrice();
         BigDecimal quantityDecimal = BigDecimal.valueOf(this.quantity);
@@ -56,4 +56,6 @@ public class ShoppingCartItem
 
         return subTotal.subtract(discountAmount);
     }
+
+
 }
